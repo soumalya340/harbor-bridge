@@ -20,7 +20,8 @@ contract HostileHook is IBridgeHookReceiver {
         mode = mode_;
         bridge = bridge_;
         savedMessage = message;
-        savedSignatures = signatures;
+        delete savedSignatures;
+        for (uint256 i; i < signatures.length; ++i) savedSignatures.push(signatures[i]);
     }
 
     function onBridgeReceived(uint256, address, uint256, bytes calldata) external {
