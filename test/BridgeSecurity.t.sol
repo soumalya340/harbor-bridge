@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import {PublicTest} from "./Public.t.sol";
+import {BridgeTestFixture} from "./BridgeTestFixture.sol";
 import {NativeBridge} from "../src/NativeBridge.sol";
 import {WrappedBridge} from "../src/WrappedBridge.sol";
 import {BridgeBase} from "../src/BridgeBase.sol";
@@ -42,7 +42,7 @@ contract DepositReentry is ITransferHook {
     function onTokenSend(address, address, uint256) external { (succeeded,) = bridge.call(payload); }
 }
 
-contract BridgeSecurityTest is PublicTest {
+contract BridgeSecurityTest is BridgeTestFixture {
     uint256 private constant CURVE_ORDER = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141;
 
     function _deposit(address recipient, uint256 amount, uint256 gasLimit, bytes memory data)
